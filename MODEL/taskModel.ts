@@ -1,18 +1,21 @@
 import { Schema, Document, model } from "mongoose";
 
-interface iTask{
-task:string
+interface iTask {
+  task: string;
+  tasks: Array<string>;
 }
 
-interface iTaskData extends iTask, Document{}
+interface iTaskData extends iTask, Document {}
 
 const taskModel = new Schema(
-    {
-        task:{
-            type:String
-        }
-    },
-    {timestamps:true}
-)
+  {
+    task: [
+      {
+        type: String,
+      },
+    ],
+  },
+  { timestamps: true }
+);
 
-export default model<iTaskData>("tasks", taskModel)
+export default model<iTaskData>("tasks", taskModel);
